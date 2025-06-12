@@ -1,101 +1,121 @@
-## 🚀 How to Use Conventional Commits in Your Git Workflow
+# Conventional Commit Cheatsheet
 
-Conventional Commits standardize your commit messages, making your project history clear and consistent. Follow this guide to integrate them into your workflow.
+A comprehensive guide to standardize your commit messages using the Conventional Commits specification. This repository provides developers with a structured reference for implementing the Conventional Commits standard in their Git workflow, including commit types, formatting rules, and best practices.
 
----
+## 📚 Overview
 
-### 1. **Commit Messages Using `git commit` in the Terminal**
+Conventional Commits provide a lightweight convention on top of commit messages, offering a simple set of rules for creating an explicit commit history. This standardized format makes your project history clear, consistent, and machine-readable, enabling:
 
-To commit changes, you'll use the `git commit` command while adhering to the Conventional Commit format.
+- Automatic versioning and release notes
+- Clear communication of changes to teammates
+- Easier maintenance and collaboration on projects
+- Better organization of git history
 
-#### Example Command:
+This cheatsheet serves as a quick reference guide for developers looking to implement Conventional Commits in their workflow.
 
-```bash
-git commit -m "feat(auth): add Google login feature"
+## 🚀 Usage
+
+### Basic Commit Structure
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
 ```
 
----
+### Quick Start
 
-### 2. **Steps to Commit in the Terminal**
-
-1. **Make Changes**: Modify your files as needed.
-
-2. **Stage Your Changes**: Add the modified files to the staging area:
-
-   - To add a specific file:
-     ```bash
-     git add <file>
-     ```
-   - To add all changed files:
-     ```bash
-     git add .
-     ```
-
-3. **Commit with Conventional Commit Message**:
-
+1. **Make changes** to your codebase
+2. **Stage your changes**:
    ```bash
-   git commit -m "feat(button): add rounded corners"
+   git add <files>   # Specific files
+   git add .         # All changes
    ```
-
-4. **Push the Changes**: Push your commits to the remote repository:
+3. **Create a conventional commit**:
    ```bash
-   git push
+   git commit -m "feat(auth): add login with Google feature"
    ```
-   Or, to push to a specific branch:
+4. **Push your changes**:
    ```bash
    git push origin <branch-name>
    ```
 
----
+## ✨ Features
 
-### 3. **Conventional Commit Structure**
+Conventional Commits provide several key benefits:
 
-Each commit message follows this structure:
+- **Automatic Versioning**: Enables semantic versioning based on commit types
+- **Improved Readability**: Makes commit history clear and understandable
+- **Automated Tools**: Enables automating changelogs and release notes
+- **Better Collaboration**: Helps teams understand changes at a glance
+- **Structured History**: Creates a well-organized project history
+- **Integration with CI/CD**: Facilitates automated testing and deployment
+- **Simplified Code Reviews**: Makes code reviews more efficient
 
+## 📋 Commit Types & Descriptions
+
+### Primary Types
+
+| Type       | Description                                               | Example                                        |
+| ---------- | --------------------------------------------------------- | ---------------------------------------------- |
+| `feat`     | A new feature                                             | `feat(auth): add login button`                 |
+| `fix`      | A bug fix                                                 | `fix(button): resolve click event issue`       |
+| `docs`     | Documentation changes                                     | `docs: update API usage examples`              |
+| `style`    | Code style changes (formatting, missing semicolons, etc.) | `style: apply consistent indentation`          |
+| `refactor` | Code changes that neither fix bugs nor add features       | `refactor: simplify authentication logic`      |
+| `test`     | Adding or correcting tests                                | `test(api): add unit tests for user endpoints` |
+| `chore`    | Maintenance tasks like dependencies or build changes      | `chore: update npm packages`                   |
+
+### Secondary Types
+
+| Type     | Description                                        | Example                                     |
+| -------- | -------------------------------------------------- | ------------------------------------------- |
+| `build`  | Changes affecting the build system or dependencies | `build(deps): upgrade webpack to v5`        |
+| `ci`     | Changes to CI configuration files and scripts      | `ci(github): update action workflow`        |
+| `perf`   | Performance improvements                           | `perf(images): optimize image loading`      |
+| `revert` | Reverts a previous commit                          | `revert: feat(auth): add login with Google` |
+| `env`    | Environment setup or configuration changes         | `env(docker): update staging configuration` |
+| `sec`    | Security-related changes                           | `sec(auth): implement rate limiting`        |
+| `config` | Configuration file updates                         | `config: update eslint rules`               |
+| `api`    | API contract or integration updates                | `api(user): add profile endpoint`           |
+| `deps`   | Dependency-specific updates                        | `deps: upgrade axios to v1.0.0`             |
+| `design` | UI/UX improvements                                 | `design(button): enhance hover effects`     |
+
+### Adding Scope (Optional)
+
+The scope provides context about what part of the codebase is affected:
+
+```bash
+git commit -m "feat(authentication): add password reset flow"
 ```
-<type>(<scope>): <description>
+
+### Breaking Changes
+
+For breaking changes, add `!` after the type/scope:
+
+```bash
+git commit -m "feat(api)!: change response format of user endpoints"
 ```
 
-#### Components:
+Or include `BREAKING CHANGE:` in the commit body:
 
-- **`type`**: The kind of change (e.g., `feat`, `fix`, `chore`).
-- **`scope`** (optional): The specific area of the project affected (e.g., `auth`, `frontend`).
-- **`description`**: A concise explanation of the change.
+```bash
+git commit -m "feat(api): change response format of user endpoints
 
----
+BREAKING CHANGE: The response format has been modified to follow JSON:API specification"
+```
 
-### 4. **Commit Types**
+## 📖 Additional Resources
 
-| **Type**     | **Description**                                            | **Example**                                 |
-| ------------ | ---------------------------------------------------------- | ------------------------------------------- |
-| **feat**     | A new feature for the user or system                       | `feat(auth): add Google login feature`      |
-| **fix**      | A bug fix for the user or system                           | `fix(button): resolve button hover issue`   |
-| **chore**    | Routine tasks like maintenance or dependency updates       | `chore(deps): update react to v17.0.2`      |
-| **docs**     | Documentation updates                                      | `docs(readme): update installation guide`   |
-| **style**    | Code style changes (e.g., formatting, missing semi-colons) | `style(css): fix button alignment`          |
-| **refactor** | Code changes that don't fix bugs or add features           | `refactor(auth): simplify login validation` |
-| **test**     | Adding or updating tests                                   | `test(auth): add unit tests for login`      |
-| **build**    | Build system or dependency changes                         | `build(webpack): add production config`     |
-| **ci**       | Continuous integration-related changes                     | `ci(gitlab): update deployment pipeline`    |
-| **perf**     | Performance improvements                                   | `perf(api): optimize database queries`      |
-| **env**      | Environment setup or configuration changes                 | `env(docker): update staging Dockerfile`    |
-| **sec**      | Security improvements                                      | `sec(auth): encrypt user passwords`         |
-| **config**   | Configuration file updates                                 | `config: update .eslint rules`              |
-| **api**      | Updates to API contracts or integrations                   | `api(user): add profile update endpoint`    |
+- [Official Conventional Commits Specification](https://www.conventionalcommits.org)
+- [Semantic Versioning](https://semver.org/)
+- [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)
 
 ---
 
-### 5. **Additional Commit Types**
-
-| **Type**   | **Description**             | **Example**                                   |
-| ---------- | --------------------------- | --------------------------------------------- |
-| **revert** | Reverts a previous commit   | `revert(auth): rollback Google login feature` |
-| **merge**  | Indicates a merge commit    | `merge: branch 'feature/auth' into 'main'`    |
-| **deps**   | Dependency-specific updates | `deps: bump axios from 0.21.1 to 0.24.0`      |
-| **design** | UI or UX improvements       | `design(button): update hover effect`         |
-
----
-
-[Conventional Commits Specification](https://www.conventionalcommits.org).
-
----
+<div align="center">
+  <p>Made with ❤️ for better commit histories</p>
+  <p><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></p>
+</div>
